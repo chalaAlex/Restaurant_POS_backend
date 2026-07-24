@@ -27,7 +27,9 @@ function setIo(io) {
  */
 async function releasePayment(paymentId) {
   const payment = await Payment.findById(paymentId);
+  
   if (!payment) throw new AppError('Payment not found', 404);
+
   if (payment.status !== 'HELD') {
     throw new AppError('Payment cannot be released in its current state', 400);
   }

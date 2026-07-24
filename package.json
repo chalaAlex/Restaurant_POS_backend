@@ -16,7 +16,9 @@
   "scripts": {
     "test": "jest tests/ --forceExit",
     "start": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js"
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "seed:import": "node dev-data/data/import-dev-data.js --import",
+    "seed:delete": "node dev-data/data/import-dev-data.js --delete"
   },
   "author": "",
   "license": "ISC",

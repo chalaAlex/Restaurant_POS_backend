@@ -26,4 +26,11 @@ router
     foodItemController.deleteFoodItem
   );
 
+router
+  .route('/:id/availability')
+  .patch(
+    authController.restrictTo('Owner'),
+    foodItemController.changeAvailability
+  );
+
 module.exports = router;

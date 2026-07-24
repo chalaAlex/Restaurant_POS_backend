@@ -12,8 +12,10 @@ const foodItemSchema = new Schema(
     },
     name: {
       type: String,
-      required: true,
+      required: [true, 'Food item name is required'],
       trim: true,
+      minlength: [2, 'Name must be at least 2 characters'],
+      maxlength: [100, 'Name must not exceed 100 characters'],
     },
     imageUrl: {
       type: String,
@@ -21,17 +23,21 @@ const foodItemSchema = new Schema(
     },
     category: {
       type: String,
-      enum: ['Food', 'Tea', 'Coffee', 'Milk', 'Other'],
-      required: true,
+      enum: {
+        values: ['Food', 'Tea', 'Coffee', 'Milk', 'Other'],
+        message: 'Category must be one of: Food, Tea, Coffee, Milk, Other',
+      },
+      required: [true, 'Category is required'],
     },
     price: {
       type: Number,
-      required: true,
-      min: 0,
+      required: [true, 'Price is required'],
+      min: [0.01, 'Price must be greater than zero'],
     },
     description: {
       type: String,
       trim: true,
+      maxlength: [500, 'Description must not exceed 500 characters'],
     },
     isAvailable: {
       type: Boolean,
@@ -39,6 +45,15 @@ const foodItemSchema = new Schema(
     },
   },
   { timestamps: true }
+);
+
+// Composite index: name is unique per restaurant (case-insensitive)
+foodItemSchema.index(
+  { restaurantId: 1, name: 1 },
+  {
+    unique: true,
+    collation: { locale: 'en', strength: 2 },
+  }
 );
 
 module.exports = mongoose.model('FoodItem', foodItemSchema);

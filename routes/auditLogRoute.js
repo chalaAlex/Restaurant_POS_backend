@@ -1,1 +1,0 @@
-// TODO: Implement a auditLog route, use a feature route as a reference. 

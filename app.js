@@ -9,6 +9,8 @@ const restaurantRouter = require('./routes/restaurantRoutes');
 const foodItemRouter = require('./routes/foodItemRoutes');
 const orderRouter = require('./routes/orderRoutes');
 const auditLogRouter = require('./routes/auditLogRoutes');
+const cashierRouter = require('./routes/cashierRoutes');
+const reportRouter = require('./routes/reportRoutes');
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -29,6 +31,8 @@ app.use('/api/v1/restaurants', restaurantRouter);
 app.use('/api/v1/food-items', foodItemRouter);
 app.use('/api/v1/orders', orderRouter);
 app.use('/api/v1/audit-logs', auditLogRouter);
+app.use('/api/v1/users/cashiers', cashierRouter);
+app.use('/api/v1/reports', reportRouter);
 
 // Global error handler — must be last
 app.use(errorController);

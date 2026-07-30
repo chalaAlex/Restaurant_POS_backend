@@ -12,7 +12,7 @@ router.use(authController.protect);
 router
   .route('/')
   .get(userController.getAllUsers);
-k
+
 router
   .route('/:id')
   .get(userController.getUser)

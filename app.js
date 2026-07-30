@@ -26,12 +26,12 @@ app.use((req, res, next) => {
 app.set('query parser', 'extended'); // For complex parsing tasks.
 
 // Routes
+app.use('/api/v1/users/cashiers', cashierRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/restaurants', restaurantRouter);
 app.use('/api/v1/food-items', foodItemRouter);
 app.use('/api/v1/orders', orderRouter);
 app.use('/api/v1/audit-logs', auditLogRouter);
-app.use('/api/v1/users/cashiers', cashierRouter);
 app.use('/api/v1/reports', reportRouter);
 
 // Global error handler — must be last
